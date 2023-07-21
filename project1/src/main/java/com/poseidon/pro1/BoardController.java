@@ -57,7 +57,7 @@ public class BoardController {
 		BoardDTO dto = new BoardDTO();
 		dto.setBtitle(request.getParameter("title"));
 		dto.setBcontent(request.getParameter("content"));
-		dto.setBwrite("홍길동2");// 이건 임시로 적었습니다. 로그인 추가되면 변경하겠습니다.
+		dto.setBwrite("엘리");// 이건 임시로 적었습니다. 로그인 추가되면 변경하겠습니다.
 
 		// Service -> DAO -> mybatis-> DB로 보내서 저장하기
 		boardService.write(dto);

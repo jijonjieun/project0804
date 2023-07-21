@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/menu.css">
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="./img/favicon.png" type="image/x-icon">
 </head>
 <body>
 	<link rel="stylesheet" href="./resources/css/index.css">

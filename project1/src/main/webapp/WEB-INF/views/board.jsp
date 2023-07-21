@@ -13,8 +13,9 @@
 <body>
 <%@ include file="menu.jsp" %>
 	<h1>보드</h1>
+	<div>
 	<table>
-		<tr>
+		<tr class = "tr1" >
 			<th>번호</th>
 			<th>제목</th>
 			<th>글쓴이</th>
@@ -32,6 +33,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 	<button onclick="location.href='./write'">글쓰기</button>
 	
 </body>

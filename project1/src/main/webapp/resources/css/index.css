@@ -1,4 +1,8 @@
 @charset "UTF-8";
+
+*{
+font-family: 'Noto Sans KR', sans-serif;
+}
       #jb-container {
         width: 1000px;
         height: 900px;
