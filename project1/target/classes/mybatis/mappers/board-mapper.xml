@@ -3,22 +3,24 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="boardList" resultType="Map">
-		SELECT * 
-		FROM board 
-		ORDER BY bno DESC 
-		LIMIT 10
+	<select id="boardList" resultType="boardDTO">
+		SELECT * FROM boardview
 	</select>
 	
 	<!-- # { 변수명}을 적어주면 변수가 들어가요 -->
-	<select id="detail" parameterType="Integer" resultType="boardDTO">
-		SELECT * FROM board WHERE bno = #{bno}
+	<select id="detail" parameterType="boardDTO" resultType="boardDTO">
+		SELECT * FROM boardview
+		WHERE bno=#{bno} 
+		<if test="m_id != null">
+		AND m_id=#{m_id}
+		</if>
 	</select>
 
 	<!-- inert는 result가 없습니다 -->
+	<!-- 서브쿼리: 쿼리안에 쿼리가 들어가요 -->
 	<insert id="write" parameterType="boardDTO">
-		INSERT INTO board (btitle, bcontent, bwrite, bip)
-		VALUES (#{btitle }, #{bcontent }, #{bwrite }, #{bip })
+		INSERT INTO board (btitle, bcontent, m_no, bip)
+		VALUES (#{btitle }, #{bcontent }, (SELECT m_no FROM members WHERE m_id=#{m_id}), #{bip })
 	</insert>
 
 	<delete id="delete" parameterType="boardDTO">

@@ -1,37 +1,37 @@
 @charset "UTF-8";
 
-div {
-	border : 10px soild #FCF8F1;
-	border-radius: 50%;
-}
 table {
 	margin: 0 auto;
 	width: 800px;
 	height: 500px;
+	border-collapse: separate; /* 테이블 셀 경계를 분리 */
+	border-spacing: 0;
+	/* 테이블 셀 간격 설정 */
 	background-color: #FCF8F1;
-	border-radius: 50%;
-	border-collapse: collapse;
-	border : 1px soild #FCF8F1;
-	border-color: #FCF8F1;
+	border-radius: 20px;
+	border: 1px soild #FCF8F1;
+	border-spacing: 0;
+	padding: 10px;
 }
 
-.tr1 {
-	border-radius: 30%;
-	border : 1px soild #FCF8F1;
-}
 th {
-	height: 50px;
 	background-color: #FACDCC;
-	border-bottom: 2px solid gray;
+	height: 50px;
+	border-bottom: 2px solid #FACDCC;
 	border-collapse: collapse;
-	border-color: #FACDCC;
+}
+
+.rr1 {
+	border-top-left-radius: 15px;
+}
+
+.rr2 {
+	border-top-right-radius: 15px;
 }
 
 td {
-
 	text-align: center;
-	border-bottom: 1px solid gray;
-	background-color: #FCF8F1;
+	border-bottom: 3px dashed #CCCCCC;
 }
 
 .td1 {
@@ -47,5 +47,5 @@ td {
 }
 
 tr:hover {
-	background-color: gray;
+	background-color: #FFE486;
 }

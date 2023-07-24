@@ -1,40 +1,69 @@
 @charset "UTF-8";
-.detail-content{
+
+.detail-content {
 	margin: 0 auto;
 	width: 800px;
-	height: auto;
-	background-color: gray;
+	height: 1000px;
+	background-color: #FCF8F1;
 	padding: 10px;
+	border-radius: 20px;
 	box-sizing: border-box;
 }
-.title{
+
+.title {
 	width: 100%;
 	height: 50px;
-	line-height:50px;
+	line-height: 50px;
 	font-size: large;
+	background-color: #FACDCC;
+	border-radius: 20px;
+	padding: 0 20px 0 20px;
+	box-sizing: border-box;
 }
-.name-bar{
+
+.under-bar {
 	width: 100%;
-	border-bottom: 1px solid black;
-	background-color: #c0c0c0;
+	border: 1px solid #FFE486;
+	background-color: #FFE486;
 	height: 80px;
+	padding: 20px;
+	border-radius: 20px;
+	box-sizing: border-box;
+}
+
+.name, .like {
+	text-align: right;
+	font-weight: bold;
+	/* padding-top: 10px 10px 0 0; */
+}
+
+.name {
+	margin: 10px;
+}
+
+.like, .date {
+	text-align: right;
+	width: 50%;
+	height: 20px;
+	float: left;
+	margin: 0 auto;
+}
+
+.ip {
+	text-align: right;
+	padding: 10px 0 10px 0;
+	font-weight: lighter;
+}
+
+.content {
+	width: 100%;
+	min-height: 500px;
+	height: auto;
 	padding: 20px;
 	box-sizing: border-box;
 }
-.name, .like, .date, .ip{
-	width: 50%;
-	height:20px;
-	float: left;
-}
-.name, .like{
-	border-bottom: 1px solid black;
-}
-.like, .ip{
-	text-align: right;
-		
-}
-.content{
-	width:100%;
-	min-height:500px; 
-	height: auto;
+
+.upNde {
+	margin: 0 auto;
+	float: right;
 }
