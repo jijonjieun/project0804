@@ -1,7 +1,5 @@
 package com.poseidon.pro1;
 
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 @Controller
 public class BoardController {
 	// user -> Controller -> Service -> DAO -> mybatis -> DB
@@ -25,10 +25,38 @@ public class BoardController {
 	@Autowired
 	private Util util; //우리가 만든 숫자 변환을 사용하기 위해서 객체연결
 	
+	//localhost/board?pageNo=10
+	//pageNo뒤에 들어온 값을 int pageNo 에 저장해줄거야.
 	@GetMapping("/board")
-	public String board(Model model) {
+	public String board(@RequestParam(value="pageNo", required=false, defaultValue = "1") int pageNo, Model model) {
 		// 서비스에서 값 가져오기
-		model.addAttribute("list", boardService.boardList());
+		//페이지네이션인포->값넣고->디비->jsp
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(pageNo); //현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10); //한 페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10); //페이징 리스트의 사이즈
+		//전체글수가져오는 명령문장
+		int totalCount = boardService.totalCount();
+		paginationInfo.setTotalRecordCount(totalCount); //전체 게시물 건수
+		
+		int firstRecordIndex = paginationInfo.getFirstRecordIndex(); //시작위치
+		int recordCountPerPage = paginationInfo.getRecordCountPerPage(); //페이지당몇개?
+		
+	
+	      PageDTO page = new PageDTO();
+	      page.setFirstRecordIndex(firstRecordIndex);
+	      page.setRecordCountPerPage(recordCountPerPage);
+		
+		
+		
+		model.addAttribute("list", boardService.boardList(page));
+		
+		//페이징 관련 정보가 있는 paginationInfo객체를 모델에 반드시 넣어준다.
+		model.addAttribute("paginationInfo", paginationInfo);
+		
+		
+		
 
 		return "board";
 	}
@@ -91,26 +119,35 @@ public class BoardController {
 	//삭제가 들어온다면 http://172.30.1.19/delete?bno=150
 	//                   HttpServletRequest의 getParameter();
 	@GetMapping("/delete")
-	public String delete(@RequestParam(value = "bno", required = true, defaultValue = "0") int bno) {
-		//System.out.println("bno : " + bno);
+	public String delete(@RequestParam(value = "bno", required = true, defaultValue = "0") int bno, HttpSession session) {
+		//로그인 여부 확인해주세요.
+		// System.out.println("mid : " + session.getAttribute("mid"));
+		
 		//dto
-		BoardDTO dto = new BoardDTO();
+			BoardDTO dto = new BoardDTO();
 		dto.setBno(bno);
+		dto.setM_id((String) session.getAttribute("mid"));
 		//dto.setBwrite(null) 사용자 정보
 		//추후 로그인을 하면 사용자의 정보도 담아서 보냅니다.
+		
+		if(session.getAttribute("mid") == dto.getM_id()) {
 		
 		boardService.delete(dto);
 		
 		return "redirect:board";// 삭제를 완료한 후에 다시 보드로 갑니다.
+	} else {
+		return "redirect:/login";
+	}
 	}
 	
 	//내일은 수정하기, 로그인하기 만들겠습니다. 내일은 시험도 있습니다.
 	@GetMapping("/edit")
 	public ModelAndView edit(HttpServletRequest request) {
-		
+	//로그인하지않으면 로그인 화면으로 던져주세요.
 		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();//jsp값을 비웁니다..
 		
-		ModelAndView mv = new ModelAndView("edit");//edit.jsp
+		if(session.getAttribute("mid") !=null) {
 		
 		//dto를 하나 만들어서 거기에 담겠습니다. =bno,bid
 		BoardDTO dto = new BoardDTO();
@@ -123,7 +160,20 @@ public class BoardController {
 	//데이터베이스에 bno를 보내서 dto를 얻어옵니다.
 		BoardDTO result = boardService.detail(dto);
 		//mv에 실어보냅니다.
-		mv.addObject("dto", result);
+		if(result != null) {//내글을 수정했습니다.
+		mv.addObject("dto", result); //mv에실어보냅니다.
+		//내가 이동할 jsp파일은 이겁니다.
+		mv.setViewName("edit");//이동할 jsp명을 적어줍니다.
+		} else {
+//다른사람글이라면 null입니다. 경고창으로 이동합니다.
+			mv.setViewName("warning");
+		}
+		
+		
+		} else {
+		//로그인안했다컨트롤러
+		mv.setViewName("redirect:/login");
+	}
 		return mv;
 	}
 	

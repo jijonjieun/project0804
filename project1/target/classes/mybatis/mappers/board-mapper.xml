@@ -3,8 +3,14 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="boardList" resultType="boardDTO">
-		SELECT * FROM boardview
+
+<select id="totalCount" resultType="Integer">
+	SELECT count(*) FROM board
+</select>
+
+	<select id="boardList" parameterType="pageDTO" resultType="boardDTO">
+		SELECT * FROM boardview 
+		LIMIT #{firstRecordIndex}, #{recordCountPerPage}
 	</select>
 	
 	<!-- # { 변수명}을 적어주면 변수가 들어가요 -->
@@ -23,12 +29,23 @@
 		VALUES (#{btitle }, #{bcontent }, (SELECT m_no FROM members WHERE m_id=#{m_id}), #{bip })
 	</insert>
 
+	
+	
 	<delete id="delete" parameterType="boardDTO">
-		DELETE FROM board WHERE bno=#{bno}
+		DELETE FROM board WHERE bno=#{bno} AND m_no=(SELECT m_no FROM members WHERE m_id=#{m_id})
 	</delete>
+	
 	
 	<update id="edit" parameterType="boardDTO">
 	UPDATE board SET btitle=#{btitle}, bcontent=#{bcontent}
 	WHERE bno=#{bno}
+	
 	</update>
+	
+		<update id="likeUp" parameterType="boardDTO">
+	UPDATE board SET blike = blike + 1
+	WHERE bno=#{bno}
+	</update>
+	
+	
 	</mapper>
