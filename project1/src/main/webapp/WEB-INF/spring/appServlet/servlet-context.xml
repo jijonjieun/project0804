@@ -23,7 +23,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.poseidon.pro1" />
+	<context:component-scan base-package="com.poseidon.*" />
 	
 	<beans:import resource="classpath:/spring/*-context.xml"/>
 	

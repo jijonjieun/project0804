@@ -1,4 +1,4 @@
-package com.poseidon.pro1;
+package com.poseidon.dto;
 
 public class LoginDTO {
 	private int m_no, m_grade, count; //카운트는 로그인시 1,0이들어옵니다.

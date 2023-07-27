@@ -4,8 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.poseidon.pro1.BoardDTO" alias="boardDTO"/>		
-		<typeAlias type="com.poseidon.pro1.LoginDTO" alias="loginDTO"/>
-		<typeAlias type="com.poseidon.pro1.PageDTO" alias="pageDTO"/>		
+		<typeAlias type="com.poseidon.dto.BoardDTO" alias="boardDTO"/>		
+		<typeAlias type="com.poseidon.dto.LoginDTO" alias="loginDTO"/>
+		<typeAlias type="com.poseidon.dto.PageDTO" alias="pageDTO"/>		
 	</typeAliases>
 </configuration>

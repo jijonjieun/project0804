@@ -1,4 +1,4 @@
-package com.poseidon.pro1;
+package com.poseidon.dto;
 
 public class PageDTO {
 	private int firstRecordIndex, recordCountPerPage;

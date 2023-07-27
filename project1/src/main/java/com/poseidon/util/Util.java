@@ -1,4 +1,4 @@
-package com.poseidon.pro1;
+package com.poseidon.util;
 
 import javax.print.DocFlavor.CHAR_ARRAY;
 import javax.servlet.http.HttpServletRequest;

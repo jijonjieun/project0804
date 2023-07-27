@@ -1,13 +1,15 @@
-package com.poseidon.pro1;
+package com.poseidon.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.poseidon.dto.BoardDTO;
+import com.poseidon.dto.PageDTO;
 
 //Inject 사용해보기
 

@@ -1,13 +1,17 @@
-package com.poseidon.pro1;
+package com.poseidon.service;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.poseidon.dao.BoardDAO;
+import com.poseidon.dto.BoardDTO;
+import com.poseidon.dto.PageDTO;
+import com.poseidon.util.Util;
 
 @Service("boardService")
 public class BoardService {
