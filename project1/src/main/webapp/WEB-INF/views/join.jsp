@@ -4,49 +4,98 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엘리 회원가입</title>
+
+<link href="./css/join.css" rel="stylesheet">
+<link href="./css/menu.css" rel="stylesheet">
+<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<body>
+	<%@ include file="menu.jsp"%>
 
-	<h2>회원가입</h2>
 
-	<form action="join" method="post">
-		<div id="content">
 
-			<form class="form_design">
+	<script>
+		function link(url) {
+			location.href = "./" + url;
+		}
+	</script>
 
-				<hr />
+	<div class="member">
 
-				<ul>
-					<li>아이디</li>
-					<li><input type="text" maxlength="25" name="id"/></li>
-				</ul>
-				<ul>
-					<li>비밀번호</li>
-					<li><input type="password" name="pw" /></li>
-				</ul>
-				<ul>
-					<li>비밀번호 재확인</li>
-					<li><input type="password" name="pw" /></li>
-				</ul>
-				<hr />
-				<ul>
-					<li>이름</li>
-					<li><input type="text" name="name1" /></li>
-				</ul>
-				주소:<input type="text" name="address"><br />
-				MBTI : <select name="mbti">
-					<option>ExxP</option>
-					<option>ExxJ</option>
-					<option>IxxP</option>
-					<option>IxxJ</option>
-				</select> <br> <input type="date" name="birth"> <input
-					type="radio" name="gender" value="m" checked>남자 <input
-					type="radio" name="gender" value="f">여자 <input
-					type="submit" value="가입">
+		<form action="./join" method="post">
 
-			</form>
-</body>
+			<div class="field">
+				<b>아이디</b> <input type="text" name="id">
+			</div>
+			<div class="field">
+				<b>비밀번호</b> <input class="userpw" type="password" name="pw1">
+			</div>
+			<div class="field">
+				<b>비밀번호 재확인</b> <input class="userpw-confirm" type="password"
+					name="pw2">
+			</div>
+			<div class="field">
+				<b>이름</b> <input type="text" name="name">
+			</div>
+
+			<div class="field">
+				<b>주소</b> <input type="text" name="addr">
+			</div>
+			<div class="field">
+				<b>MBTI</b> <select name="mbti">
+					<option value="">선택하세요</option>
+					<optgroup label="너 E야?">
+						<option value="ESTJ">ESTJ</option>
+						<option value="ESTP">ESTP</option>
+						<option value="ESFJ">ESFJ</option>
+						<option value="ESFP">ESFP</option>
+						<option value="ENTJ">ENTJ</option>
+						<option value="ENTP">ENTP</option>
+						<option value="ENFJ">ENFJ</option>
+						<option value="ENFP">ENFP</option>
+					</optgroup>
+					<optgroup label="너 I야?">
+						<option value="ISTJ">ISTJ</option>
+						<option value="ISTP">ISTP</option>
+						<option value="ISFJ">ISFJ</option>
+						<option value="INTJ">INTJ</option>
+						<option value="INTP">INTP</option>
+						<option value="INFJ">INFJ</option>
+						<option value="INFP">INFP</option>
+					</optgroup>
+				</select>
+			</div>
+			<div class="field birth">
+				<b>생년월일</b>
+				<div>
+					<input type="date" name="birth">
+				</div>
+			</div>
+			<div class="field gender">
+				<b>성별</b>
+				<div>
+					<label><input type="radio" name="gender" id="m" value="1">남자</label>
+					<label><input type="radio" name="gender" id="f" value="0">여자</label>
+				</div>
+			</div>
+			<div class="field submit">
+				<input type="submit" value="가입하기">
+			</div>
+		</form>
+
+		<div class="member-footer">
+			<div>
+				<a href="#none">이용약관</a> <a href="#none">개인정보처리방침</a> <a
+					href="#none">법적고지</a> <a href="#none">고객센터</a>
+			</div>
+			<span><a href="#none">Copyright © Elly Corp. All Rights
+					Reserved.</a></span>
+		</div>
+	</div>
+
 </body>
 </html>
