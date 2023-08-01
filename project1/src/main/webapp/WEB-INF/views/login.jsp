@@ -9,6 +9,9 @@
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/login.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+crossorigin="anonymous"></script>
 <script type="text/javascript">
 	//스크립트 영역
 	//전역변수
@@ -40,6 +43,33 @@
 		return false;
 		}
 	}
+	//jquery
+	$(function() {
+		$(".button").click(function(){
+ 		let id = $("#id").val();
+ 		let pw = $("#pw").val();
+ 		if(id.length <4) {
+ 			alert("아이디를 입력하세요.");
+ 			
+ 		}else{
+ 			if(pw.length <4){
+ 				alert("암호를 입력하세요.");
+ 				
+ 			} else {
+ 				if(pw.length <5) {}
+ 				//아이디하고 암호하고 정확하게 입력되었습니다.
+ 				let form = $("<form></form>");
+ 				form.attr("method","post");
+ 				form.attr("action","./login");
+ 				form.append($("<input/>", {type:"hidden", name="id", value:id}));
+ 				form.append($("<input/>", {type:"hidden", name="pw", value:pw}));
+ 			    form.appendTo("body");
+ 			    form.submit();
+ 				
+ 			}
+ 		}
+ 		});
+ 	});
 </script>
 </head>
 <body>
@@ -50,7 +80,7 @@
 		</div>
 		<div>
 			<div id="login">
-				<form action="./login" method="post" onsubmit="return check()">
+				<form action="./login" method="post" onsubmit="return check()"></form>
 					<input type="text" id="id" name="id" placeholder="ID"
 						required="required" maxlength="10" onchange="checkID()"> <br>
 					<input type="password" id="pw" name="pw" placeholder="PW"
@@ -60,7 +90,7 @@
 					</div>
 					<button type="submit" class="button" >LOGIN</button>
 					<span id="msg"></span>
-				</form>
+				
 			</div>
 		</div>
 	</div>

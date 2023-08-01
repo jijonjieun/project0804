@@ -20,11 +20,12 @@
 <body>
 <%@ include file="menu.jsp" %>
 	<h1>글쓰기</h1>
+	<button class = "btn btn-outline-primary">버튼</button>
 	<div class="write-div">
 		<form action="./write" method="post">
 			<input type="text" name="title">
 			<textarea id="summernote" name="content"></textarea>
-			<button class="btn100" type="submit">글쓰기</button>
+			<button class="btn100 btn btn-primary" type="submit">글쓰기</button>
 		</form>
 		<!-- type="submit" => 제출버튼. 폼데이터로 데이터 전송 -->
 	</div>

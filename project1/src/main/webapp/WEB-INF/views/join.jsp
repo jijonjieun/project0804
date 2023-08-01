@@ -12,24 +12,55 @@
 <link href="./css/menu.css" rel="stylesheet">
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+<script src="./js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#idCheck").click(function(){
+        let id = $("#id").val();
+        if(id=="" || id.length < 5 ) {
+            $("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
+            $("#id").focus();
+            
+        } else {
+        	$.ajax({
+        		url:"./checkID",
+        		type: "post",
+        		data: {"id":id}, //checkID?id=poseidon
+        		dataType: "html", 		
+        		success: function(data) {
+        			$("#resultMSG").text("data: " +data);
+        		},
+        		error: function(request, status, error){
+        			$("#resultMSG").text("error: " +error);
+        		
+        		}
+        	});
+        	
+        	 $("#resultMSG").text("완");
+        	 $("#resultMSG").css("color", "green");
+        	 
+        	
+        }
+            return false;
+       
+    });
+});
+
+</script>
+
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
 
-
-
-	<script>
-		function link(url) {
-			location.href = "./" + url;
-		}
-	</script>
 
 	<div class="member">
 
 		<form action="./join" method="post">
 
 			<div class="field">
-				<b>아이디</b> <input type="text" name="id">
+				<b>아이디</b> <input type="text" name="id" id="id">
+				<button id="idCheck"> 중복검사</button>
+				<span id="resultMSG"></span>
 			</div>
 			<div class="field">
 				<b>비밀번호</b> <input class="userpw" type="password" name="pw1">
