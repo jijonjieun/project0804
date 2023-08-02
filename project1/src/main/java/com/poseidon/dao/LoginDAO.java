@@ -1,6 +1,7 @@
 package com.poseidon.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,14 @@ public class LoginDAO {
 
 	public List<JoinDTO> members() {
 		return sqlSession.selectList("login.members");
+	}
+
+	public int checkID(String id) {
+		return sqlSession.selectOne("login.checkID", id);
+	}
+
+	public List<Map<String, Object>> boardList2() {
+		return sqlSession.selectList("login.boardList2");
 	}
 
 }

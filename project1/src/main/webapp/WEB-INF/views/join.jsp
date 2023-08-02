@@ -14,38 +14,49 @@
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <script src="./js/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-    $("#idCheck").click(function(){
-        let id = $("#id").val();
-        if(id=="" || id.length < 5 ) {
-            $("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
-            $("#id").focus();
-            
-        } else {
-        	$.ajax({
-        		url:"./checkID",
-        		type: "post",
-        		data: {"id":id}, //checkID?id=poseidon
-        		dataType: "html", 		
-        		success: function(data) {
-        			$("#resultMSG").text("data: " +data);
-        		},
-        		error: function(request, status, error){
-        			$("#resultMSG").text("error: " +error);
-        		
-        		}
-        	});
-        	
-        	 $("#resultMSG").text("완");
-        	 $("#resultMSG").css("color", "green");
-        	 
-        	
-        }
-            return false;
-       
-    });
-});
+	$(function() {
+		$("#idCheck").click(function() {
+			let id = $("#id").val();
+			if (id == "" || id.length < 5) {
+				$("#id").focus();
+				$("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
+				$("#resultMSG").css("color", "gray");
+				$("#resultMSG").css("font-weight", "bold");
+				$("#resultMSG").css("font-size", "12pt");
 
+			} else {
+				$.ajax({
+					url : "./checkID",
+					type : "post",
+					data : {"id" : id },
+					//위의 let id가 들어감 //checkID?id=poseidon
+					dataType : "json",
+					success : function(data) { //성공했을때는 html형식의 데이타가
+						//돌아옴 위의 데이타아님 서버에서 데이타가옴
+						if (data.result == 1) {
+							$("#id").css("background-color", "yellow").focus();
+							$("#resultMSG").css("color", "gray");
+							$("#resultMSG").text("이미 등록된 아이디 입니다.");
+						} else {
+							$("#id").css("background-color", "white");
+							$("#resultMSG").css("color", "gray");
+							$("#resultMSG").text("가입할 수 있습니다.");
+						}
+					},
+					error : function(request, status, error) {
+						$("#resultMSG").text("오류가 발생했습니다.");
+
+					}
+				});
+
+				$("#resultMSG").text("완");
+				$("#resultMSG").css("color", "green");
+
+			}
+			return false;
+
+		});
+	});
 </script>
 
 </head>
@@ -59,7 +70,7 @@ $(function(){
 
 			<div class="field">
 				<b>아이디</b> <input type="text" name="id" id="id">
-				<button id="idCheck"> 중복검사</button>
+				<button id="idCheck">중복검사</button>
 				<span id="resultMSG"></span>
 			</div>
 			<div class="field">
