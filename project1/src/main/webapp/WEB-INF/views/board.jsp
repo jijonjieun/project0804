@@ -56,7 +56,7 @@
 	로그인 한 이름 : ${sessionScope.mname } / ${sessionScope.mid }
 	</div>
 	<c:if test="${sessionScope.mname ne null}">
-	<button onclick="location.href='./write'">글쓰기</button>
+	<button class ="writee" onclick="location.href='./write'">글쓰기</button>
 	</c:if>
 </body>
 </html>
