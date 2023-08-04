@@ -36,7 +36,11 @@
 			<!-- onclick 자바스크립트 페이지 이동, URL?파라미터=값 -->
 			<tr onclick="location.href='./detail?bno=${row.bno }'">
 				<td class="td1">${row.bno }</td>
-				<td class="title">${row.btitle }</td>
+				<td class="title">${row.btitle }
+				<small>
+				<c:if test ="${row.commentcount ne 0}">${row.commentcount}</c:if>
+				</small>
+				 </td>
 				<td class="td1">${row.m_name }</td>
 				<td class="td2">${row.bdate }</td>
 				<td class="td1">${row.blike }</td>

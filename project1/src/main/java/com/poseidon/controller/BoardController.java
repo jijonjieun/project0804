@@ -1,5 +1,7 @@
 package com.poseidon.controller;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -78,9 +80,17 @@ public class BoardController {
 		// System.out.println("bno : " + bno);
 		//dto로 변경합니다.
 		BoardDTO dto = new BoardDTO();
-		dto.setBno(bno);
+		dto.setBno(bno);	
 		
 		BoardDTO result = boardService.detail(dto);
+		
+		if(result.getCommentcount()>0) {
+			//데이터베이스에 물어봐서 jsp로 보냅니다.
+			List<Map<String, Object>> commentsList = boardService.commentsList(bno);
+			model.addAttribute("commentsList",commentsList);
+		}
+		
+		
 		model.addAttribute("dto", result);
 
 		return "detail";
@@ -171,6 +181,8 @@ public class BoardController {
 	//데이터베이스에 bno를 보내서 dto를 얻어옵니다.
 		BoardDTO result = boardService.detail(dto);
 		//mv에 실어보냅니다.
+		
+		
 		if(result != null) {//내글을 수정했습니다.
 		mv.addObject("dto", result); //mv에실어보냅니다.
 		//내가 이동할 jsp파일은 이겁니다.

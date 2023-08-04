@@ -26,7 +26,7 @@
 	function check() {
 		let msg = document.getElementById("msg");
 		let id = document.getElementById("id");
-		if (id.value.length < 4) {
+		if (id.value.length < 2) {
 			alert("아이디는 4글자 이상이어야 합니다.");
 			msg.innerHTML = text;
 			id.focus();
@@ -51,11 +51,11 @@
 			let id = $('#id').val();
 			let pw = $('#pw').val();
 
-			if (id.length < 5) {
+			if (id.length < 2) {
 				alert("아이디를 입력하세요.");
 				$("#id").focus();
 			}
-			if (pw.length < 5) {
+			if (pw.length < 2) {
 				alert("암호를 입력하세요.");
 				$("#pw").focus();
 

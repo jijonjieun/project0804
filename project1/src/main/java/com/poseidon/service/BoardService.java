@@ -1,6 +1,7 @@
 package com.poseidon.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -83,6 +84,10 @@ public class BoardService {
 	public int totalCount() {
 		
 		return boardDAO.tatalCount();
+	}
+
+	public List<Map<String, Object>> commentsList(int bno) {
+		return boardDAO.commentsList(bno);
 	}
 
 }
